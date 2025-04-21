@@ -116,3 +116,36 @@ export async function getEmail() {
   const user = await getCurrentUser();
   return user?.email || null;
 }
+
+export async function getInterViewByUserId(
+  userId: string
+): Promise<Interview[] | null> {
+  const interviews = await db
+    .collection('interviews')
+    .where('userId', '==', userId)
+    .orderBy('createdAt', 'desc')
+    .get();
+
+  return interviews.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as Interview[];
+}
+
+export async function getLatestInterviws(
+  params: GetLatestInterviewsParams
+): Promise<Interview[] | null> {
+  const { userId, limit = 20 } = params;
+  const interviews = await db
+    .collection('interviews')
+    .where('finalized', '==', true)
+    .where('userId', '!=', userId)
+    .orderBy('createdAt', 'desc')
+    .limit(limit)
+    .get();
+
+  return interviews.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  })) as Interview[];
+}
