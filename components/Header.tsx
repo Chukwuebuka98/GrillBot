@@ -3,7 +3,8 @@ import { maskEmail } from '@/utils/email';
 import { NavItem } from '@/components/NavItem';
 import { Button } from '@/components/ui/button';
 import { MobileNavbar } from '@/components/MobileNav';
-import { getEmail, isAuthenticated } from '@/lib/actions/auth.action';
+import { getEmail } from '@/lib/actions/general.action';
+import { isAuthenticated } from '@/lib/actions/auth.action';
 
 export default async function Header() {
   const isUserAuthenticated = await isAuthenticated();

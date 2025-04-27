@@ -1,11 +1,10 @@
-import { dummyInterviews } from '@/constants';
 import React from 'react';
 import InterviewCard from './InterviewCard';
+import { getCurrentUser } from '@/lib/actions/auth.action';
 import {
-  getCurrentUser,
   getInterViewByUserId,
   getLatestInterviws,
-} from '@/lib/actions/auth.action';
+} from '@/lib/actions/general.action';
 
 const Interviews = async () => {
   const user = await getCurrentUser();
