@@ -12,7 +12,7 @@ export default async function Header() {
   const maskedEmail = userEmail ? maskEmail(userEmail) : null;
 
   return (
-    <div className="w-full sticky top-0 backdrop-blur-lg">
+    <div className="w-full sticky top-0 backdrop-blur-lg z-50">
       <header className="container  flex items-center justify-between gap-10 pt-4 px-4 pb-[16px] mx-auto">
         <Link href="/" className="flex items-center gap-3 flex-1">
           <span className="font-heading text-xl font-bold">GrillBot </span>
@@ -50,7 +50,7 @@ export default async function Header() {
                 </Button>
               ) : (
                 <Button asChild size="lg" className="mt-2 w-full btn-primary">
-                  <Link href="/intervew" className="cursor-pointer">
+                  <Link href="/interview" className="cursor-pointer">
                     Start an interview
                   </Link>
                 </Button>
