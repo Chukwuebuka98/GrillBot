@@ -8,10 +8,14 @@ import {
 
 const Interviews = async () => {
   const user = await getCurrentUser();
+  if (!user?.id) {
+    return null;
+  }
+
   const [userInterviews, latestInterviews] = await Promise.all([
-    await getInterViewByUserId(user?.id!),
+    await getInterViewByUserId(user.id),
     await getLatestInterviws({
-      userId: user?.id!,
+      userId: user.id,
     }),
   ]);
 
@@ -44,7 +48,7 @@ const Interviews = async () => {
               <InterviewCard key={interview.id} {...interview} />
             ))
           ) : (
-            <p>There are no new interviews availables</p>
+            <p>There are no new interviews available</p>
           )}
         </div>
       </section>
